@@ -58,11 +58,17 @@ add_library(
         uv/src/version.c
 )
 
-#add_executable(test_uv test.c)
-find_package (Threads)
-#add_executable(systeminfo learnuv/systeminfo.c)
-add_executable(idle_func learnuv/idle_func.c)
 
-#target_link_libraries(test_uv PRIVATE uv)
-#target_link_libraries(systeminfo PRIVATE uv ${CMAKE_THREAD_LIBS_INIT})
+find_package (Threads)
+
+add_executable(test_uv test.c)
+target_link_libraries(test_uv PRIVATE uv)
+
+add_executable(systeminfo learnuv/systeminfo.c)
+target_link_libraries(systeminfo PRIVATE uv ${CMAKE_THREAD_LIBS_INIT})
+
+add_executable(idle_func learnuv/idle_func.c)
 target_link_libraries(idle_func PRIVATE uv ${CMAKE_THREAD_LIBS_INIT})
+
+add_executable(fs_readsync learnuv/fs_readsync.c)
+target_link_libraries(fs_readsync PRIVATE uv ${CMAKE_THREAD_LIBS_INIT})
